@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,10 +13,15 @@ import { NameListService } from './name-list/name-list.service';
  */
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslateModule],
   declarations: [ToolbarComponent, NavbarComponent],
-  exports: [ToolbarComponent, NavbarComponent,
-    CommonModule, FormsModule, RouterModule]
+  exports: [
+    ToolbarComponent
+    , NavbarComponent
+    , CommonModule
+    , FormsModule
+    , RouterModule
+    , TranslateModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

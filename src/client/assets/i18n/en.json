@@ -1,0 +1,23 @@
+{
+  "ANGULARSEED":"Angular Seed",
+  "HOME": {
+    "NAV":"Home",
+    "COMPUTER_SCIENTIST_LIST_MSG":"Howdy! Here's a list of awesome computer scientists. Do you know any others? Add to the list yourself.",
+    "AWESOME_SCIENTIST_PLACEHOLDER":"Awesome Computer Scientist"
+  },
+  "ABOUT":{
+    "NAV":"About",
+    "TITLE":"Angular Seed is a starter project that implements best practices in coding, building and testing Angular apps.",
+    "FEATURES":"Features",
+    "F1":"Ready to go, statically typed build system using Gulp for working with TypeScript.",
+    "F2":"Production and development builds.",
+    "F3":"Sample unit tests with Jasmine and Karma including code coverage via Istanbul.",
+    "F4":"End-to-end tests with Protractor.",
+    "F5":"Development server with live reload.",
+    "F6":"TypeScript definition management using Types.",
+    "F7":"Basic Service Worker, which implements \"Cache then network strategy\"."
+  },
+  "BUTTONS": {
+    "ADD":"Add"
+  }
+}
