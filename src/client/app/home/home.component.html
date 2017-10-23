@@ -1,10 +1,10 @@
-<p>Howdy! Here's a list of awesome computer scientists. Do you know any others? Add to the list yourself.</p>
+<p translate="HOME.COMPUTER_SCIENTIST_LIST_MSG"></p>
 
 <form (submit)="addName()">
-  <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
-  <button type="submit">Add</button>
+  <input [(ngModel)]="newName" name="newName" [attr.placeholder]="'HOME.AWESOME_SCIENTIST_PLACEHOLDER' | translate">
+  <button type="submit" translate="BUTTONS.ADD"></button>
 </form>
 
 <ul>
-  <li *ngFor="let name of names">{{ name }}</li>
+  <li *ngFor="let name of names"><i class="fa fa-star" aria-hidden="true"></i>{{ name }}</li>
 </ul>

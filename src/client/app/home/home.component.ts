@@ -1,3 +1,4 @@
+import { TostrService } from './../shared/common/tostr.service';
 import { Component, OnInit } from '@angular/core';
 import { NameListService } from '../shared/name-list/name-list.service';
 
@@ -11,7 +12,7 @@ import { NameListService } from '../shared/name-list/name-list.service';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
+  search: string = '';
   newName: string = '';
   errorMessage: string;
   names: any[] = [];
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit {
    *
    * @param {NameListService} nameListService - The injected NameListService.
    */
-  constructor(public nameListService: NameListService) {}
+  constructor(public nameListService: NameListService
+  , private tostr: TostrService) {}
 
   /**
    * Get the names OnInit
@@ -49,6 +51,7 @@ export class HomeComponent implements OnInit {
   addName(): boolean {
     // TODO: implement nameListService.post
     this.names.push(this.newName);
+    this.tostr.success(this.newName + ' added successfully.');
     this.newName = '';
     return false;
   }

@@ -1,7 +1,7 @@
 import { join } from 'path';
 
 import { SeedConfig } from './seed.config';
-// import { ExtendPackages } from './seed.config.interfaces';
+import { ExtendPackages } from './seed.config.interfaces';
 
 /**
  * This class extends the basic seed configuration, allowing for project specific overrides. A few examples can be found
@@ -10,6 +10,11 @@ import { SeedConfig } from './seed.config';
 export class ProjectConfig extends SeedConfig {
 
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
+
+  FONTS_DEST = `${this.APP_DEST}/fonts`;
+  FONTS_SRC = [
+      'node_modules/font-awesome/fonts/**'
+  ];
 
   constructor() {
     super();
@@ -24,6 +29,8 @@ export class ProjectConfig extends SeedConfig {
       ...this.NPM_DEPENDENCIES,
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
+      { src: 'font-awesome/css/font-awesome.min.css', inject: true },
+      { src: 'ngx-toastr/toastr.css', inject: true }
     ];
 
     // Add `local` third-party libraries to be injected/bundled.
@@ -43,13 +50,27 @@ export class ProjectConfig extends SeedConfig {
     ];
 
     // Add packages (e.g. ng2-translate)
-    // let additionalPackages: ExtendPackages[] = [{
-    //   name: 'ng2-translate',
-    //   // Path to the package's bundle
-    //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'
-    // }];
-    //
-    // this.addPackagesBundles(additionalPackages);
+    let additionalPackages: ExtendPackages[] = [
+    {
+      name: '@ngx-translate/core',
+      path: 'node_modules/@ngx-translate/core/bundles/core.umd.js'
+    }, {
+      name: '@ngx-translate/http-loader',
+      path: 'node_modules/@ngx-translate/http-loader/bundles/http-loader.umd.js'
+    }, {
+      name: 'lodash',
+      path: 'node_modules/lodash/lodash.js'
+    }, {
+      name: 'ngx-progressbar',
+      path: 'node_modules/ngx-progressbar/bundles/ngx-progressbar.umd.js'
+    }, {
+      name: 'ngx-toastr',
+      path: 'node_modules/ngx-toastr/toastr.umd.js'
+    }];
+
+    this.addPackagesBundles(additionalPackages);
+
+    this.ENABLE_SCSS = true;
 
     /* Add proxy middleware */
     // this.PROXY_MIDDLEWARE = [
