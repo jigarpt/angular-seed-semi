@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Config } from './shared/config/env.config';
+import * as _ from 'lodash';
 import './operators';
 
 /**
@@ -16,6 +17,9 @@ import './operators';
 export class AppComponent {
   constructor(translate: TranslateService) {
     console.log('Environment config', Config);
+
+    // lodash check
+    console.log('Is equal? ' + (_.isEqual({age: 1}, {age: 1})));
 
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');

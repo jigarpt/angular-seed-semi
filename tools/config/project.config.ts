@@ -30,6 +30,7 @@ export class ProjectConfig extends SeedConfig {
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
       { src: 'font-awesome/css/font-awesome.min.css', inject: true },
+      { src: 'ngx-toastr/toastr.css', inject: true }
     ];
 
     // Add `local` third-party libraries to be injected/bundled.
@@ -56,6 +57,15 @@ export class ProjectConfig extends SeedConfig {
     }, {
       name: '@ngx-translate/http-loader',
       path: 'node_modules/@ngx-translate/http-loader/bundles/http-loader.umd.js'
+    }, {
+      name: 'lodash',
+      path: 'node_modules/lodash/lodash.js'
+    }, {
+      name: 'ngx-progressbar',
+      path: 'node_modules/ngx-progressbar/bundles/ngx-progressbar.umd.js'
+    }, {
+      name: 'ngx-toastr',
+      path: 'node_modules/ngx-toastr/toastr.umd.js'
     }];
 
     this.addPackagesBundles(additionalPackages);
