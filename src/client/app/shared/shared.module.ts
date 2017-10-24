@@ -1,3 +1,4 @@
+import { HttpService } from './http/http.service';
 import { HttpErrorHandlerService } from './http/http-error-handler.service';
 import { CsrfService } from './http/csrf.service';
 import { TokenService } from './http/token.service';
@@ -34,6 +35,7 @@ export class SharedModule {
       providers: [NameListService
                   , TranslateService
                   , TostrService
+                  , HttpService
                   , TokenService
                   , CsrfService
                   , HttpErrorHandlerService]

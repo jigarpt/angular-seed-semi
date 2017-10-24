@@ -1,6 +1,6 @@
-export class Response {
-  public data: Object;
-  public code: number;
-  public message: string;
-  public token: string;
+export interface ResponseModel {
+  data: Object;
+  code: number;
+  message: string;
+  token: string;
 }

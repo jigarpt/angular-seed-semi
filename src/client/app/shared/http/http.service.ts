@@ -1,7 +1,7 @@
 import { TokenService } from './token.service';
 import { CsrfService } from './csrf.service';
 import { HttpErrorHandlerService } from './http-error-handler.service';
-import { Response } from './response.model';
+import { ResponseModel } from './response.model';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable, EventEmitter } from '@angular/core';
@@ -23,7 +23,7 @@ export class HttpService {
     , private tokenService: TokenService
   ) {}
 
-  public get(url: string, options?: RequestOptionsArgs): Observable<Response> {
+  public get(url: string, options?: RequestOptionsArgs): Observable<ResponseModel> {
     return this._request(RequestMethod.Get, url, null, options);
   }
 
@@ -31,7 +31,7 @@ export class HttpService {
     url: string,
     body: string,
     options?: RequestOptionsArgs
-  ): Observable<Response> {
+  ): Observable<ResponseModel> {
     return this._request(RequestMethod.Post, url, body, options);
   }
 
@@ -39,14 +39,14 @@ export class HttpService {
     url: string,
     body: string,
     options?: RequestOptionsArgs
-  ): Observable<Response> {
+  ): Observable<ResponseModel> {
     return this._request(RequestMethod.Put, url, body, options);
   }
 
   public delete(
     url: string,
     options?: RequestOptionsArgs
-  ): Observable<Response> {
+  ): Observable<ResponseModel> {
     return this._request(RequestMethod.Delete, url, null, options);
   }
 
@@ -54,11 +54,11 @@ export class HttpService {
     url: string,
     body: string,
     options?: RequestOptionsArgs
-  ): Observable<Response> {
+  ): Observable<ResponseModel> {
     return this._request(RequestMethod.Patch, url, body, options);
   }
 
-  public head(url: string, options?: RequestOptionsArgs): Observable<Response> {
+  public head(url: string, options?: RequestOptionsArgs): Observable<ResponseModel> {
     return this._request(RequestMethod.Head, url, null, options);
   }
 
@@ -67,22 +67,19 @@ export class HttpService {
     url: string,
     body?: string,
     options?: RequestOptionsArgs
-  ): Observable<Response> {
-
-    let httpRequest = new HttpRequest(
-      RequestMethod[method],
-      url,
-      body,
-      Object.assign(
-        {
-          withCredentials: true
-        },
-        options
-      )
-    );
+  ): Observable<ResponseModel> {
 
     return Observable.create((observer: any) => {
-      this._http.request(httpRequest).subscribe(
+      this._http.request<ResponseModel>(
+        RequestMethod[method]
+        , url
+        , Object.assign(
+          {
+            body: body,
+            withCredentials: true
+          },
+          options
+        )).subscribe(
         response => {
           observer.next(response);
           observer.complete();
