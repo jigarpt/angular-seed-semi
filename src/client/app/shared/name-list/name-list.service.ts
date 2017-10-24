@@ -1,5 +1,8 @@
+import { HttpClient, HttpRequest } from '@angular/common/http';
+import { ResponseModel } from './../http/response.model';
+import { HttpService } from './../http/http.service';
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 // import 'rxjs/add/operator/do';  // for debugging
 
@@ -14,29 +17,15 @@ export class NameListService {
    * @param {Http} http - The injected Http.
    * @constructor
    */
-  constructor(private http: Http) {}
+  constructor(private httpService: HttpService) {}
 
   /**
    * Returns an Observable for the HTTP GET request for the JSON resource.
-   * @return {string[]} The Observable for the HTTP request.
+   * @return {ResponseModel} The Observable for the HTTP request.
    */
-  get(): Observable<string[]> {
-    return this.http.get('assets/data.json')
-                    .map((res: Response) => res.json())
-    //              .do(data => console.log('server data:', data))  // debug
-                    .catch(this.handleError);
+  get(): Observable<ResponseModel> {
+    return this.httpService.get('assets/data/data.json');
   }
 
-  /**
-    * Handle HTTP error
-    */
-  private handleError (error: any) {
-    // In a real world app, we might use a remote logging infrastructure
-    // We'd also dig deeper into the error to get a better message
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
-  }
 }
 
